@@ -5,7 +5,7 @@ var logger = Logger(
 );
 
 var loggerNoStack = Logger(
-  printer: PrettyPrinter(methodCount: 0),
+  printer: PrettyPrinter(methodCount: 0, borders: true),
 );
 
 void main() {
@@ -25,5 +25,5 @@ void demo() {
 
   loggerNoStack.v({'key': 5, 'value': 'something'});
 
-  Logger(printer: SimplePrinter()..useColor = true).v('boom');
+  Logger(printer: SimplePrinter()).v('boom');
 }

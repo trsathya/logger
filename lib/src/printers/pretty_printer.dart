@@ -52,6 +52,7 @@ class PrettyPrinter extends LogPrinter {
   final bool colors;
   final bool printEmojis;
   final bool printTime;
+  final bool borders;
 
   String _topBorder = '';
   String _middleBorder = '';
@@ -64,6 +65,7 @@ class PrettyPrinter extends LogPrinter {
     this.colors = true,
     this.printEmojis = true,
     this.printTime = false,
+    this.borders = true,
   }) {
     _startTime ??= DateTime.now();
 
@@ -205,37 +207,38 @@ class PrettyPrinter extends LogPrinter {
     // ignore: omit_local_variable_types
     List<String> buffer = [];
     var color = _getLevelColor(level);
-    buffer.add(color(_topBorder));
+    if (borders) buffer.add(color(_topBorder));
 
     if (error != null) {
       var errorColor = _getErrorColor(level);
       for (var line in error.split('\n')) {
         buffer.add(
-          color('$verticalLine ') +
+          color('${borders ? '$verticalLine ' : ''}') +
               errorColor.resetForeground +
               errorColor(line) +
               errorColor.resetBackground,
         );
       }
-      buffer.add(color(_middleBorder));
+      if (borders) buffer.add(color(_middleBorder));
     }
 
     if (stacktrace != null) {
       for (var line in stacktrace.split('\n')) {
-        buffer.add('$color$verticalLine $line');
+        buffer.add('$color${borders ? '$verticalLine ' : ''}$line');
       }
-      buffer.add(color(_middleBorder));
+      if (borders) buffer.add(color(_middleBorder));
     }
 
     if (time != null) {
-      buffer..add(color('$verticalLine $time'))..add(color(_middleBorder));
+      buffer..add(color('${borders ? '$verticalLine ' : ''}$time'));
+      if (borders) buffer..add(color(_middleBorder));
     }
 
     var emoji = _getEmoji(level);
     for (var line in message.split('\n')) {
-      buffer.add(color('$verticalLine $emoji$line'));
+      buffer.add(color('${borders ? '$verticalLine ' : ''}$emoji$line'));
     }
-    buffer.add(color(_bottomBorder));
+    if (borders) buffer.add(color(_bottomBorder));
 
     return buffer;
   }
