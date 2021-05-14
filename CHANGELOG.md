@@ -1,3 +1,26 @@
+## 1.0.0
+- Stable nullsafety
+
+## 1.0.0-nullsafety.0
+- Convert to nullsafety. Credits to @DevNico
+
+## 0.9.4
+- Remove broken platform detection.
+
+## 0.9.3
+- Add `MultiOutput`. Credits to @gmpassos.
+- Handle browser Dart stacktraces in PrettyPrinter. Credits to @gmpassos.
+- Add platform detection. Credits to @gmpassos.
+- Catch output exceptions. Credits to @gmpassos.
+- Several documentation fixes. Credits to @gmpassos.
+
+## 0.9.2
+- Add `PrefixPrinter`. Credits to @tkutcher.
+- Add `HybridPrinter`. Credits to @tkutcher.
+ 
+## 0.9.1
+- Fix logging output for Flutter Web. Credits to @nateshmbhat and @Cocotus.
+
 ## 0.9.0
 - Remove `OutputCallback` and `LogCallback`
 - Rename `SimplePrinter`s argument `useColor` to `colors`
